@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Stockflow - Inventario</title>
+	<link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <header>
+    <h1>Stockflow</h1>
+    <p>Gestor de inventario</p>
+    <nav>
+      <a href="index.html" class="activo">Inventario</a>
+      <a href="almacenes.html">Almacenes</a>
+      <a href="usuarios.html">Usuarios</a>
+    </nav>
+  </header>
+  <main>
+    <h2>Inventario</h2>
+    <p>Consulta las existencias de productos y el almacén al que pertenecen.</p>
+
+    <section class="resumen">
+      <div class="tarjeta"><h3>Productos</h3><p>3</p></div>
+      <div class="tarjeta"><h3>Unidades en existencia</h3><p>43</p></div>
+      <div class="tarjeta"><h3>Almacenes</h3><p>2</p></div>
+    </section>
+
+    <section class="panel">
+      <h2>Productos registrados</h2>
+      <div class="tabla-contenedor">
+        <table>
+          <caption>Existencias por producto y almacén</caption>
+          <thead>
+            <tr><th scope="col">Código</th><th scope="col">Producto</th><th scope="col">Categoría</th><th scope="col">Almacén</th><th scope="col">Cantidad</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>PR-001</td><td>Cuaderno profesional</td><td>Papelería</td><td>Central</td><td>20</td></tr>
+            <tr><td>PR-002</td><td>Bolígrafo azul</td><td>Papelería</td><td>Central</td><td>15</td></tr>
+            <tr><td>PR-003</td><td>Carpeta tamaño carta</td><td>Oficina</td><td>Sucursal Norte</td><td>8</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Registrar producto</h2>
+      <form>
+        <div class="campos">
+          <div><label for="codigo">Código</label><input id="codigo" name="codigo" type="text" placeholder="PR-004" required></div>
+          <div><label for="nombre">Nombre del producto</label><input id="nombre" name="nombre" type="text" required></div>
+          <div><label for="categoria">Categoría</label><select id="categoria" name="categoria" required><option value="">Selecciona una categoría</option><option value="papeleria">Papelería</option><option value="oficina">Oficina</option></select></div>
+          <div><label for="almacen">Almacén</label><select id="almacen" name="almacen" required><option value="">Selecciona un almacén</option><option value="AL-001">Central</option><option value="AL-002">Sucursal Norte</option></select></div>
+          <div><label for="cantidad">Cantidad inicial</label><input id="cantidad" name="cantidad" type="number" min="0" step="1" required></div>
+        </div>
+        <p id="aviso-producto">El registro de productos estará disponible en una próxima etapa.</p>
+        <button class="deshabilitado" type="button" disabled>Guardar producto</button>
+        <button class="secundario" type="reset">Limpiar campos</button>
+      </form>
+    </section>
+  </main>
+  <footer><p>Stockflow · Sistema de inventario</p></footer>
+</body>
+</html>

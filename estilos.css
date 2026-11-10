@@ -1,0 +1,163 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #f3f5f7;
+  color: #263445;
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+}
+
+header {
+  padding: 20px;
+  background-color: #214e73;
+  color: #ffffff;
+}
+
+header h1,
+header p {
+  margin: 0 0 8px;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+nav a {
+  padding: 8px 14px;
+  border-radius: 4px;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.activo {
+  background-color: #ffffff;
+  color: #214e73;
+}
+
+main {
+  max-width: 1100px;
+  margin: 24px auto;
+  padding: 0 20px;
+}
+
+h2,
+h3 {
+  margin-top: 0;
+}
+
+.aviso {
+  padding: 12px;
+  border-left: 4px solid #9a6b13;
+  background-color: #fff3d6;
+}
+
+.resumen,
+.campos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.tarjeta,
+.campos > div {
+  flex: 1 1 220px;
+  min-width: 0;
+}
+
+.tarjeta,
+.panel {
+  margin-bottom: 24px;
+  padding: 20px;
+  border: 1px solid #cbd3dc;
+  border-radius: 6px;
+  background-color: #ffffff;
+}
+
+.tarjeta p {
+  margin: 0;
+  color: #214e73;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.tabla-contenedor {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+caption {
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+th,
+td {
+  padding: 12px;
+  border: 1px solid #cbd3dc;
+  text-align: left;
+}
+
+th {
+  background-color: #e8eff5;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  margin-bottom: 16px;
+  padding: 10px;
+  border: 1px solid #7d8b9a;
+  border-radius: 4px;
+  background-color: #ffffff;
+  color: inherit;
+  font: inherit;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+  margin: 4px 8px 4px 0;
+  padding: 10px 16px;
+  border: 1px solid #214e73;
+  border-radius: 4px;
+  background-color: #214e73;
+  color: #ffffff;
+  font: inherit;
+  cursor: pointer;
+}
+
+button.secundario {
+  background-color: #ffffff;
+  color: #214e73;
+}
+
+.deshabilitado {
+  border-color: #596a7b;
+  background-color: #596a7b;
+  cursor: not-allowed;
+}
+
+footer {
+  padding: 16px 20px;
+  color: #526171;
+  text-align: center;
+}

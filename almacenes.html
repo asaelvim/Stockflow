@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stockflow - Almacenes</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <header>
+    <h1>Stockflow</h1>
+    <p>Gestor de inventario</p>
+    <nav>
+      <a href="index.html">Inventario</a>
+      <a href="almacenes.html" class="activo">Almacenes</a>
+      <a href="usuarios.html">Usuarios</a>
+    </nav>
+  </header>
+  <main>
+    <h2>Almacenes</h2>
+    <p>Consulta las ubicaciones donde se resguardan los productos del inventario.</p>
+
+    <section class="panel">
+      <h2>Almacenes registrados</h2>
+      <div class="tabla-contenedor">
+        <table>
+          <caption>Ubicaciones y existencias de ejemplo</caption>
+          <thead>
+            <tr><th scope="col">Código</th><th scope="col">Nombre</th><th scope="col">Ubicación</th><th scope="col">Unidades en existencia</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>AL-001</td><td>Central</td><td>Edificio principal, planta baja</td><td>35</td></tr>
+            <tr><td>AL-002</td><td>Sucursal Norte</td><td>Edificio norte, local 2</td><td>8</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Registrar almacén</h2>
+      <form>
+        <div class="campos">
+          <div><label for="codigo">Código</label><input id="codigo" name="codigo" type="text" placeholder="AL-003" required></div>
+          <div><label for="nombre">Nombre del almacén</label><input id="nombre" name="nombre" type="text" required></div>
+          <div><label for="ubicacion">Ubicación</label><input id="ubicacion" name="ubicacion" type="text" required></div>
+        </div>
+        <label for="descripcion">Descripción (opcional)</label>
+        <textarea id="descripcion" name="descripcion" rows="3"></textarea>
+        <p id="aviso-almacen">El registro de almacenes estará disponible en una próxima etapa.</p>
+        <button class="deshabilitado" type="button" disabled>Guardar almacén</button>
+        <button class="secundario" type="reset">Limpiar campos</button>
+      </form>
+    </section>
+  </main>
+  <footer><p>Stockflow · Sistema de inventario</p></footer>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Stockflow - Usuarios</title>
+	<link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <header>
+    <h1>Stockflow</h1>
+    <p>Gestor de inventario</p>
+    <nav>
+      <a href="index.html">Inventario</a>
+      <a href="almacenes.html">Almacenes</a>
+      <a href="usuarios.html" class="activo">Usuarios</a>
+    </nav>
+  </header>
+  <main>
+    <h2>Usuarios</h2>
+    <p>Consulta las personas que tendrán acceso al sistema y sus roles.</p>
+
+    <section class="panel">
+      <h2>Usuarios registrados</h2>
+      <div class="tabla-contenedor">
+        <table>
+          <caption>Usuarios y roles de ejemplo</caption>
+          <thead>
+            <tr>
+              <th scope="col">Código</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Correo</th>
+              <th scope="col">Rol</th>
+              <th scope="col">Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>US-001</td>
+              <td>Usuario administrador</td>
+              <td>admin@example.com</td>
+              <td>Administrador</td>
+              <td>Activo</td>
+            </tr>
+            <tr>
+              <td>US-002</td>
+              <td>Usuario de almacén</td>
+              <td>almacen@example.com</td>
+              <td>Encargado</td>
+              <td>Activo</td>
+            </tr>
+            <tr>
+              <td>US-003</td>
+              <td>Usuario de consulta</td>
+              <td>consulta@example.com</td>
+              <td>Consulta</td>
+              <td>Inactivo</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Registrar usuario</h2>
+      <form>
+        <div class="campos">
+          <div>
+            <label for="nombre">Nombre completo</label>
+            <input id="nombre" name="nombre" type="text" autocomplete="name" required>
+          </div>
+          <div>
+            <label for="correo">Correo electrónico</label>
+            <input id="correo" name="correo" type="email" autocomplete="email" required>
+          </div>
+          <div>
+            <label for="rol">Rol</label>
+            <select id="rol" name="rol" required>
+              <option value="">Selecciona un rol</option>
+              <option value="administrador">Administrador</option>
+              <option value="encargado">Encargado</option>
+              <option value="consulta">Consulta</option>
+            </select>
+          </div>
+          <div>
+            <label for="estado">Estado</label>
+            <select id="estado" name="estado">
+              <option value="activo">Activo</option>
+              <option value="inactivo">Inactivo</option>
+            </select>
+          </div>
+        </div>
+        <p id="aviso-usuario">El registro de usuarios y la asignación de permisos estarán disponibles en una próxima etapa.</p>
+        <button class="deshabilitado" type="button" disabled>Guardar usuario</button>
+        <button class="secundario" type="reset">Limpiar campos</button>
+      </form>
+    </section>
+  </main>
+  <footer><p>Stockflow · Sistema de inventario</p></footer>
+</body>
+</html>
