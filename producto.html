@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Detalle de producto &middot; Stockflow</title>
+    <link href="estilos.css" rel="stylesheet">
+  </head>
+  <body>
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+    <header class="cabecera">
+      <div class="cabecera-superior">
+        <div>
+          <a class="marca" href="index.html">
+            Stockflow
+            <span aria-hidden="true">.</span>
+          </a>
+          <p class="submarca">Gesti&oacute;n de inventario</p>
+        </div>
+        <div class="sesion">
+          <span>Vista de administrador</span>
+          <a href="acceso.php">Acceso</a>
+        </div>
+      </div>
+      <nav aria-label="Principal">
+        <a aria-current="location" href="index.html">Inventario</a>
+        <a href="movimientos.html">Movimientos</a>
+        <a href="almacenes.html">Almacenes</a>
+        <a href="categorias.html">Categor&iacute;as</a>
+        <a href="usuarios.html">Usuarios</a>
+      </nav>
+    </header>
+    <main id="contenido">
+      <p class="migas">
+        <a href="index.html">Inventario</a>
+        / Detalle de producto
+      </p>
+      <div class="titulo-pagina">
+        <div>
+          <span class="ceja">Detalle de producto</span>
+          <h1>Detalle de producto</h1>
+          <p>Consulta sus datos, existencias e historial.</p>
+        </div>
+        <a class="boton" href="#editar-producto">Editar producto</a>
+      </div>
+      <section aria-label="Resumen del producto" class="resumen">
+        <div class="tarjeta">
+          <h2>Existencias totales</h2>
+          <p class="valor">0</p>
+          <small>Piezas</small>
+        </div>
+        <div class="tarjeta">
+          <h2>Stock m&iacute;nimo</h2>
+          <p class="valor">0</p>
+          <small>Por almac&eacute;n</small>
+        </div>
+        <div class="tarjeta">
+          <h2>Almacenes con stock</h2>
+          <p class="valor">0</p>
+          <small>Ubicaciones activas</small>
+        </div>
+      </section>
+      <div class="division">
+        <div>
+          <section aria-labelledby="datos-titulo" class="panel">
+            <div class="encabezado-panel">
+              <h2 id="datos-titulo">Informaci&oacute;n del producto</h2>
+              <span class="estado disponible">Activo</span>
+            </div>
+            <dl class="lista-datos">
+              <div>
+                <dt>C&oacute;digo</dt>
+                <dd></dd>
+              </div>
+              <div>
+                <dt>Categor&iacute;a</dt>
+                <dd></dd>
+              </div>
+              <div>
+                <dt>Unidad de medida</dt>
+                <dd>Pieza</dd>
+              </div>
+              <div>
+                <dt>Fecha de registro</dt>
+                <dd>
+                  <time datetime="2026-11-08">08 nov 2026</time>
+                </dd>
+              </div>
+            </dl>
+          </section>
+          <section aria-labelledby="existencias-titulo" class="panel">
+            <h2 id="existencias-titulo">Existencias por almac&eacute;n</h2>
+            <div aria-label="Existencias del producto" class="tabla-contenedor" role="region" tabindex="0">
+              <table>
+                <caption>Ubicaciones con existencias</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Almac&eacute;n</th>
+                    <th scope="col">Ubicaci&oacute;n</th>
+                    <th class="numero" scope="col">Cantidad</th>
+                    <th scope="col">Nivel de stock</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+        <aside class="panel">
+          <h2>Control de existencias</h2>
+          <p>Las cantidades no se editan en los datos del producto. Usa movimientos para mantener el historial.</p>
+          <a class="boton secundario" href="movimientos.html#nuevo-movimiento">Registrar movimiento</a>
+        </aside>
+      </div>
+      <section aria-labelledby="historial-titulo" class="panel">
+        <div class="encabezado-panel">
+          <h2 id="historial-titulo">Historial del producto</h2>
+          <a href="movimientos.html">Ver todos los movimientos</a>
+        </div>
+        <div aria-label="Movimientos del producto" class="tabla-contenedor" role="region" tabindex="0">
+          <table>
+            <caption>Historial del producto</caption>
+            <thead>
+              <tr>
+                <th scope="col">Folio</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Almac&eacute;n</th>
+                <th class="numero" scope="col">Cantidad</th>
+                <th class="numero" scope="col">Saldo</th>
+                <th scope="col">Responsable</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+      <div class="division">
+        <section aria-labelledby="editar-titulo" class="panel" id="editar-producto">
+          <h2 id="editar-titulo">Editar producto</h2>
+          <p class="ayuda">Los campos marcados con * son obligatorios.</p>
+          <form aria-describedby="editar-aviso">
+            <div class="campos">
+              <div>
+                <label for="codigo">C&oacute;digo</label>
+                <input id="codigo" name="codigo" readonly="" value="">
+                <span class="ayuda">Identificador no editable.</span>
+              </div>
+              <div>
+                <label for="nombre">Nombre *</label>
+                <input id="nombre" maxlength="120" name="nombre" required="" value="">
+              </div>
+              <div>
+                <label for="categoria">Categor&iacute;a *</label>
+                <select id="categoria" name="categoria" required=""></select>
+              </div>
+              <div>
+                <label for="unidad">Unidad de medida</label>
+                <input id="unidad" name="unidad" readonly="" value="">
+                <span class="ayuda">No editable despu&eacute;s de registrar movimientos.</span>
+              </div>
+              <div>
+                <label for="minimo">Stock m&iacute;nimo por almac&eacute;n *</label>
+                <input id="minimo" min="0" name="minimo" required="" step="1" type="number" value="">
+              </div>
+              <div class="ancho-completo">
+                <label for="descripcion">Descripci&oacute;n (opcional)</label>
+                <textarea id="descripcion" maxlength="500" name="descripcion" rows="3"></textarea>
+              </div>
+            </div>
+            <div class="acciones">
+              <button disabled="" type="submit">Guardar cambios</button>
+              <button class="secundario" type="reset">Restablecer</button>
+              <a href="index.html">Volver al inventario</a>
+            </div>
+          </form>
+        </section>
+        <aside class="panel">
+          <h2>Desactivar producto</h2>
+          <p>Conserva el registro y sus movimientos, pero impide nuevas operaciones con el producto.</p>
+        </aside>
+      </div>
+    </main>
+    <footer>Stockflow</footer>
+  </body>
+</html>

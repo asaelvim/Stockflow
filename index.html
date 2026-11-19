@@ -1,64 +1,174 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Stockflow - Inventario</title>
-	<link rel="stylesheet" href="estilos.css">
-</head>
-<body>
-  <header>
-    <h1>Stockflow</h1>
-    <p>Gestor de inventario</p>
-    <nav>
-      <a href="index.html" class="activo">Inventario</a>
-      <a href="almacenes.html">Almacenes</a>
-      <a href="usuarios.html">Usuarios</a>
-    </nav>
-  </header>
-  <main>
-    <h2>Inventario</h2>
-    <p>Consulta las existencias de productos y el almacén al que pertenecen.</p>
-
-    <section class="resumen">
-      <div class="tarjeta"><h3>Productos</h3><p>3</p></div>
-      <div class="tarjeta"><h3>Unidades en existencia</h3><p>43</p></div>
-      <div class="tarjeta"><h3>Almacenes</h3><p>2</p></div>
-    </section>
-
-    <section class="panel">
-      <h2>Productos registrados</h2>
-      <div class="tabla-contenedor">
-        <table>
-          <caption>Existencias por producto y almacén</caption>
-          <thead>
-            <tr><th scope="col">Código</th><th scope="col">Producto</th><th scope="col">Categoría</th><th scope="col">Almacén</th><th scope="col">Cantidad</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>PR-001</td><td>Cuaderno profesional</td><td>Papelería</td><td>Central</td><td>20</td></tr>
-            <tr><td>PR-002</td><td>Bolígrafo azul</td><td>Papelería</td><td>Central</td><td>15</td></tr>
-            <tr><td>PR-003</td><td>Carpeta tamaño carta</td><td>Oficina</td><td>Sucursal Norte</td><td>8</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <section class="panel">
-      <h2>Registrar producto</h2>
-      <form>
-        <div class="campos">
-          <div><label for="codigo">Código</label><input id="codigo" name="codigo" type="text" placeholder="PR-004" required></div>
-          <div><label for="nombre">Nombre del producto</label><input id="nombre" name="nombre" type="text" required></div>
-          <div><label for="categoria">Categoría</label><select id="categoria" name="categoria" required><option value="">Selecciona una categoría</option><option value="papeleria">Papelería</option><option value="oficina">Oficina</option></select></div>
-          <div><label for="almacen">Almacén</label><select id="almacen" name="almacen" required><option value="">Selecciona un almacén</option><option value="AL-001">Central</option><option value="AL-002">Sucursal Norte</option></select></div>
-          <div><label for="cantidad">Cantidad inicial</label><input id="cantidad" name="cantidad" type="number" min="0" step="1" required></div>
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Inventario &middot; Stockflow</title>
+    <link href="estilos.css" rel="stylesheet">
+  </head>
+  <body>
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+    <header class="cabecera">
+      <div class="cabecera-superior">
+        <div>
+          <a class="marca" href="index.html">
+            Stockflow
+            <span aria-hidden="true">.</span>
+          </a>
+          <p class="submarca">Gesti&oacute;n de inventario</p>
         </div>
-        <p id="aviso-producto">El registro de productos estará disponible en una próxima etapa.</p>
-        <button class="deshabilitado" type="button" disabled>Guardar producto</button>
-        <button class="secundario" type="reset">Limpiar campos</button>
-      </form>
-    </section>
-  </main>
-  <footer><p>Stockflow · Sistema de inventario</p></footer>
-</body>
+        <div class="sesion">
+          <span>Vista de administrador</span>
+          <a href="acceso.php">Acceso</a>
+        </div>
+      </div>
+      <nav aria-label="Principal">
+        <a aria-current="page" href="index.html">Inventario</a>
+        <a href="movimientos.html">Movimientos</a>
+        <a href="almacenes.html">Almacenes</a>
+        <a href="categorias.html">Categor&iacute;as</a>
+        <a href="usuarios.html">Usuarios</a>
+      </nav>
+    </header>
+    <main id="contenido">
+      <div class="titulo-pagina">
+        <div>
+          <span class="ceja">Control de existencias</span>
+          <h1>Inventario</h1>
+          <p>Todos tus productos, sus ubicaciones y niveles de stock.</p>
+        </div>
+        <a class="boton" href="#nuevo-producto">+ Registrar producto</a>
+      </div>
+      <section aria-label="Resumen del inventario" class="resumen">
+        <div class="tarjeta">
+          <h2>Productos</h2>
+          <p class="valor">0</p>
+          <small>En el cat&aacute;logo</small>
+        </div>
+        <div class="tarjeta">
+          <h2>Unidades disponibles</h2>
+          <p class="valor">0</p>
+          <small>En todos los almacenes</small>
+        </div>
+        <div class="tarjeta">
+          <h2>Stock bajo</h2>
+          <p class="valor">0</p>
+          <small>Producto por reabastecer</small>
+        </div>
+        <div class="tarjeta">
+          <h2>Almacenes</h2>
+          <p class="valor">0</p>
+          <small>Ubicaciones activas</small>
+        </div>
+      </section>
+      <section aria-labelledby="productos-titulo" class="panel">
+        <div class="encabezado-panel">
+          <h2 id="productos-titulo">Productos registrados</h2>
+          <span class="ayuda"></span>
+        </div>
+        <form aria-describedby="filtros-aviso" aria-label="Filtros de inventario" class="filtros">
+          <div class="busqueda">
+            <label for="buscar">Buscar producto</label>
+            <input id="buscar" name="buscar" placeholder="Nombre o c&oacute;digo" type="search">
+          </div>
+          <div>
+            <label for="filtro-almacen">Almac&eacute;n</label>
+            <select id="filtro-almacen" name="almacen">
+              <option value="">Todos los almacenes</option>
+            </select>
+          </div>
+          <div>
+            <label for="filtro-categoria">Categor&iacute;a</label>
+            <select id="filtro-categoria" name="categoria">
+              <option value="">Todas las categor&iacute;as</option>
+            </select>
+          </div>
+          <div>
+            <label for="filtro-stock">Existencias</label>
+            <select id="filtro-stock" name="stock">
+              <option value="">Todos los niveles</option>
+              <option value="disponible">Disponible</option>
+              <option value="bajo">Stock bajo</option>
+              <option value="agotado">Sin existencias</option>
+            </select>
+          </div>
+          <button aria-describedby="filtros-aviso" disabled="" type="submit">Aplicar filtros</button>
+        </form>
+        <div aria-label="Productos" class="tabla-contenedor" role="region" tabindex="0">
+          <table>
+            <caption>Existencias actuales por producto y almac&eacute;n. Stock bajo: cantidad igual o menor al m&iacute;nimo.</caption>
+            <thead>
+              <tr>
+                <th scope="col">C&oacute;digo</th>
+                <th scope="col">Producto</th>
+                <th scope="col">Categor&iacute;a</th>
+                <th scope="col">Almac&eacute;n</th>
+                <th class="numero" scope="col">Cantidad</th>
+                <th class="numero" scope="col">M&iacute;nimo</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+      </section>
+      <div class="division">
+        <section aria-labelledby="alta-titulo" class="panel" id="nuevo-producto">
+          <h2 id="alta-titulo">Registrar producto</h2>
+          <p class="ayuda">Los campos marcados con * son obligatorios.</p>
+          <form aria-describedby="aviso-producto">
+            <div class="campos">
+              <div>
+                <label for="codigo">C&oacute;digo *</label>
+                <input id="codigo" maxlength="30" name="codigo" required="">
+              </div>
+              <div>
+                <label for="nombre">Nombre del producto *</label>
+                <input id="nombre" maxlength="120" name="nombre" placeholder="Ej. L&aacute;piz de grafito" required="">
+              </div>
+              <div>
+                <label for="categoria">Categor&iacute;a *</label>
+                <select id="categoria" name="categoria" required="">
+                  <option value="">Selecciona una categor&iacute;a</option>
+                </select>
+              </div>
+              <div>
+                <label for="unidad">Unidad de medida *</label>
+                <select id="unidad" name="unidad" required="">
+                  <option value="pieza">Pieza</option>
+                  <option value="caja">Caja</option>
+                  <option value="paquete">Paquete</option>
+                </select>
+              </div>
+              <div>
+                <label for="almacen">Almac&eacute;n inicial *</label>
+                <select id="almacen" name="almacen" required="">
+                  <option value="">Selecciona un almac&eacute;n</option>
+                </select>
+              </div>
+              <div>
+                <label for="cantidad">Cantidad inicial *</label>
+                <input id="cantidad" min="0" name="cantidad" placeholder="0" required="" step="1" type="number">
+              </div>
+              <div>
+                <label for="minimo">Stock m&iacute;nimo por almac&eacute;n *</label>
+                <input id="minimo" min="0" name="minimo" placeholder="10" required="" step="1" type="number">
+              </div>
+              <div class="ancho-completo">
+                <label for="descripcion">Descripci&oacute;n (opcional)</label>
+                <textarea id="descripcion" maxlength="500" name="descripcion" placeholder="Caracter&iacute;sticas para identificar el producto" rows="3"></textarea>
+              </div>
+            </div>
+            <div class="acciones">
+              <button disabled="" type="submit">Guardar producto</button>
+              <button class="secundario" type="reset">Limpiar campos</button>
+            </div>
+          </form>
+        </section>
+      </div>
+    </main>
+    <footer>Stockflow</footer>
+  </body>
 </html>

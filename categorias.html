@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Categor&iacute;as &middot; Stockflow</title>
+    <link href="estilos.css" rel="stylesheet">
+  </head>
+  <body>
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+    <header class="cabecera">
+      <div class="cabecera-superior">
+        <div>
+          <a class="marca" href="index.html">
+            Stockflow
+            <span aria-hidden="true">.</span>
+          </a>
+          <p class="submarca">Gesti&oacute;n de inventario</p>
+        </div>
+        <div class="sesion">
+          <span>Vista de administrador</span>
+          <a href="acceso.php">Acceso</a>
+        </div>
+      </div>
+      <nav aria-label="Principal">
+        <a href="index.html">Inventario</a>
+        <a href="movimientos.html">Movimientos</a>
+        <a href="almacenes.html">Almacenes</a>
+        <a aria-current="page" href="categorias.html">Categor&iacute;as</a>
+        <a href="usuarios.html">Usuarios</a>
+      </nav>
+    </header>
+    <main id="contenido">
+      <div class="titulo-pagina">
+        <div>
+          <span class="ceja">Cat&aacute;logo</span>
+          <h1>Categor&iacute;as</h1>
+          <p>Clasifica los productos para encontrarlos m&aacute;s f&aacute;cilmente.</p>
+        </div>
+        <a class="boton" href="#nueva-categoria">+ Registrar categor&iacute;a</a>
+      </div>
+      <section aria-label="Resumen de categor&iacute;as" class="resumen">
+        <div class="tarjeta">
+          <h2>Categor&iacute;as activas</h2>
+          <p class="valor">0</p>
+        </div>
+        <div class="tarjeta">
+          <h2>Productos clasificados</h2>
+          <p class="valor">0</p>
+        </div>
+      </section>
+      <section aria-labelledby="categorias-titulo" class="panel">
+        <h2 id="categorias-titulo">Categor&iacute;as registradas</h2>
+        <form aria-describedby="filtros-aviso" aria-label="Filtros de categor&iacute;as" class="filtros">
+          <div class="busqueda">
+            <label for="buscar">Buscar categor&iacute;a</label>
+            <input id="buscar" name="buscar" placeholder="C&oacute;digo o nombre" type="search">
+          </div>
+          <div>
+            <label for="filtro-estado">Estado</label>
+            <select id="filtro-estado" name="estado">
+              <option value="">Todos</option>
+              <option value="activo">Activo</option>
+              <option value="inactivo">Inactivo</option>
+            </select>
+          </div>
+          <button disabled="" type="submit">Aplicar filtros</button>
+        </form>
+        <div aria-label="Categor&iacute;as" class="tabla-contenedor" role="region" tabindex="0">
+          <table>
+            <caption>Categor&iacute;as registradas</caption>
+            <thead>
+              <tr>
+                <th scope="col">C&oacute;digo</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Descripci&oacute;n</th>
+                <th class="numero" scope="col">Productos</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+      <div class="division">
+        <section aria-labelledby="alta-titulo" class="panel" id="nueva-categoria">
+          <h2 id="alta-titulo">Registrar categor&iacute;a</h2>
+          <p class="ayuda">Los campos marcados con * son obligatorios.</p>
+          <form aria-describedby="aviso-categoria">
+            <div class="campos">
+              <div>
+                <label for="codigo">C&oacute;digo *</label>
+                <input id="codigo" maxlength="30" name="codigo" required="">
+              </div>
+              <div>
+                <label for="nombre">Nombre *</label>
+                <input id="nombre" maxlength="80" name="nombre" placeholder="Ej. Limpieza" required="">
+              </div>
+              <div class="ancho-completo">
+                <label for="descripcion">Descripci&oacute;n (opcional)</label>
+                <textarea id="descripcion" maxlength="300" name="descripcion" rows="3"></textarea>
+              </div>
+            </div>
+            <div class="acciones">
+              <button disabled="" type="submit">Guardar categor&iacute;a</button>
+              <button class="secundario" type="reset">Limpiar campos</button>
+            </div>
+          </form>
+        </section>
+        <aside class="panel">
+          <h2>Un cat&aacute;logo consistente</h2>
+          <p>Usa nombres claros y evita duplicados. Cada producto pertenece a una categor&iacute;a.</p>
+          <p>Desactivar una categor&iacute;a impedir&aacute; asignarla a nuevos productos. Primero deber&aacute;n reasignarse los productos asociados.</p>
+          <a href="index.html#nuevo-producto">Ir al registro de productos</a>
+        </aside>
+      </div>
+    </main>
+    <footer>Stockflow</footer>
+  </body>
+</html>

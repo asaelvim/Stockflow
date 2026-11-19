@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Acceso &middot; Stockflow</title>
+    <link href="estilos.css" rel="stylesheet">
+  </head>
+  <body>
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+    <main class="acceso" id="contenido">
+      <section aria-labelledby="presentacion-titulo" class="presentacion">
+        <a class="marca" href="index.html">
+          Stockflow
+          <span aria-hidden="true">.</span>
+        </a>
+        <p class="ceja">Gesti&oacute;n de inventario</p>
+        <h1 id="presentacion-titulo">
+          Cada producto.
+          <br>
+          Cada movimiento.
+          <br>
+          En un solo lugar.
+        </h1>
+        <p>Consulta existencias, organiza tus almacenes y mant&eacute;n un historial claro de las entradas y salidas.</p>
+      </section>
+      <section aria-labelledby="acceso-titulo" class="panel panel-acceso">
+        <h2 id="acceso-titulo">Accede a tu cuenta</h2>
+        <p class="ayuda">Los campos marcados con * son obligatorios.</p>
+        <form action="acceso.php" aria-describedby="acceso-aviso" method="POST">
+          <label for="correo">Correo electr&oacute;nico *</label>
+          <input autocomplete="username" id="correo" name="correo" placeholder="nombre@example.com" required="" type="email">
+          <label for="contrasena">Contrase&ntilde;a *</label>
+          <input autocomplete="current-password" id="contrasena" name="contrasena" required="" type="password">
+          <div class="acciones">
+            <button type="submit">Iniciar sesi&oacute;n</button>
+            <a class="boton secundario" href="index.html">Volver al inicio</a>
+          </div>
+        </form>
+        <p class="nota">&iquest;Olvidaste tu contrase&ntilde;a?</p>
+        <details>
+          <summary>Recuperar acceso</summary>
+          <div class="contenido-detalle">
+            <p>Solicita un enlace de recuperaci&oacute;n a tu correo registrado.</p>
+            <form aria-describedby="recuperacion-aviso">
+              <label for="recuperacion-correo">Correo electr&oacute;nico *</label>
+              <input autocomplete="email" id="recuperacion-correo" name="correo" required="" type="email">
+              <button disabled="" type="submit">Solicitar enlace</button>
+            </form>
+          </div>
+        </details>
+      </section>
+    </main>
+    <footer>Stockflow</footer>
+  </body>
+</html>

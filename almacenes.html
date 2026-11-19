@@ -1,57 +1,143 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stockflow - Almacenes</title>
-  <link rel="stylesheet" href="estilos.css">
-</head>
-<body>
-  <header>
-    <h1>Stockflow</h1>
-    <p>Gestor de inventario</p>
-    <nav>
-      <a href="index.html">Inventario</a>
-      <a href="almacenes.html" class="activo">Almacenes</a>
-      <a href="usuarios.html">Usuarios</a>
-    </nav>
-  </header>
-  <main>
-    <h2>Almacenes</h2>
-    <p>Consulta las ubicaciones donde se resguardan los productos del inventario.</p>
-
-    <section class="panel">
-      <h2>Almacenes registrados</h2>
-      <div class="tabla-contenedor">
-        <table>
-          <caption>Ubicaciones y existencias de ejemplo</caption>
-          <thead>
-            <tr><th scope="col">Código</th><th scope="col">Nombre</th><th scope="col">Ubicación</th><th scope="col">Unidades en existencia</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>AL-001</td><td>Central</td><td>Edificio principal, planta baja</td><td>35</td></tr>
-            <tr><td>AL-002</td><td>Sucursal Norte</td><td>Edificio norte, local 2</td><td>8</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <section class="panel">
-      <h2>Registrar almacén</h2>
-      <form>
-        <div class="campos">
-          <div><label for="codigo">Código</label><input id="codigo" name="codigo" type="text" placeholder="AL-003" required></div>
-          <div><label for="nombre">Nombre del almacén</label><input id="nombre" name="nombre" type="text" required></div>
-          <div><label for="ubicacion">Ubicación</label><input id="ubicacion" name="ubicacion" type="text" required></div>
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Almacenes &middot; Stockflow</title>
+    <link href="estilos.css" rel="stylesheet">
+  </head>
+  <body>
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+    <header class="cabecera">
+      <div class="cabecera-superior">
+        <div>
+          <a class="marca" href="index.html">
+            Stockflow
+            <span aria-hidden="true">.</span>
+          </a>
+          <p class="submarca">Gesti&oacute;n de inventario</p>
         </div>
-        <label for="descripcion">Descripción (opcional)</label>
-        <textarea id="descripcion" name="descripcion" rows="3"></textarea>
-        <p id="aviso-almacen">El registro de almacenes estará disponible en una próxima etapa.</p>
-        <button class="deshabilitado" type="button" disabled>Guardar almacén</button>
-        <button class="secundario" type="reset">Limpiar campos</button>
-      </form>
-    </section>
-  </main>
-  <footer><p>Stockflow · Sistema de inventario</p></footer>
-</body>
+        <div class="sesion">
+          <span>Vista de administrador</span>
+          <a href="acceso.php">Acceso</a>
+        </div>
+      </div>
+      <nav aria-label="Principal">
+        <a href="index.html">Inventario</a>
+        <a href="movimientos.html">Movimientos</a>
+        <a aria-current="page" href="almacenes.html">Almacenes</a>
+        <a href="categorias.html">Categor&iacute;as</a>
+        <a href="usuarios.html">Usuarios</a>
+      </nav>
+    </header>
+    <main id="contenido">
+      <div class="titulo-pagina">
+        <div>
+          <span class="ceja">Ubicaciones</span>
+          <h1>Almacenes</h1>
+          <p>Organiza d&oacute;nde se resguardan los productos.</p>
+        </div>
+        <a class="boton" href="#nuevo-almacen">+ Registrar almac&eacute;n</a>
+      </div>
+      <section aria-label="Resumen de almacenes" class="resumen">
+        <div class="tarjeta">
+          <h2>Almacenes activos</h2>
+          <p class="valor">0</p>
+        </div>
+        <div class="tarjeta">
+          <h2>Unidades resguardadas</h2>
+          <p class="valor">0</p>
+        </div>
+        <div class="tarjeta">
+          <h2>Productos distintos</h2>
+          <p class="valor">0</p>
+        </div>
+      </section>
+      <section aria-labelledby="almacenes-titulo" class="panel">
+        <h2 id="almacenes-titulo">Almacenes registrados</h2>
+        <form aria-describedby="filtros-aviso" aria-label="Filtros de almacenes" class="filtros">
+          <div class="busqueda">
+            <label for="buscar">Buscar almac&eacute;n</label>
+            <input id="buscar" name="buscar" placeholder="C&oacute;digo, nombre o ubicaci&oacute;n" type="search">
+          </div>
+          <div>
+            <label for="filtro-estado">Estado</label>
+            <select id="filtro-estado" name="estado">
+              <option value="">Todos</option>
+              <option value="activo">Activo</option>
+              <option value="inactivo">Inactivo</option>
+            </select>
+          </div>
+          <button disabled="" type="submit">Aplicar filtros</button>
+        </form>
+        <div aria-label="Almacenes" class="tabla-contenedor" role="region" tabindex="0">
+          <table>
+            <caption>Almacenes registrados</caption>
+            <thead>
+              <tr>
+                <th scope="col">C&oacute;digo</th>
+                <th scope="col">Almac&eacute;n</th>
+                <th scope="col">Ubicaci&oacute;n</th>
+                <th scope="col">Responsable</th>
+                <th class="numero" scope="col">Productos</th>
+                <th class="numero" scope="col">Unidades</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+      </section>
+      <div class="division">
+        <section aria-labelledby="alta-titulo" class="panel" id="nuevo-almacen">
+          <h2 id="alta-titulo">Registrar almac&eacute;n</h2>
+          <p class="ayuda">Los campos marcados con * son obligatorios.</p>
+          <form aria-describedby="aviso-almacen">
+            <div class="campos">
+              <div>
+                <label for="codigo">C&oacute;digo *</label>
+                <input id="codigo" maxlength="30" name="codigo" required="">
+              </div>
+              <div>
+                <label for="nombre">Nombre del almac&eacute;n *</label>
+                <input id="nombre" maxlength="100" name="nombre" required="">
+              </div>
+              <div class="ancho-completo">
+                <label for="ubicacion">Ubicaci&oacute;n *</label>
+                <input id="ubicacion" maxlength="200" name="ubicacion" placeholder="Edificio, piso o direcci&oacute;n" required="">
+              </div>
+              <div>
+                <label for="responsable">Responsable *</label>
+                <select id="responsable" name="responsable" required="">
+                  <option value="">Selecciona un usuario activo</option>
+                </select>
+              </div>
+              <div class="ancho-completo">
+                <label for="descripcion">Descripci&oacute;n (opcional)</label>
+                <textarea id="descripcion" maxlength="500" name="descripcion" rows="3"></textarea>
+              </div>
+            </div>
+            <div class="acciones">
+              <button disabled="" type="submit">Guardar almac&eacute;n</button>
+              <button class="secundario" type="reset">Limpiar campos</button>
+            </div>
+          </form>
+        </section>
+        <aside class="panel">
+          <h2>Antes de mover existencias</h2>
+          <ul class="lista-simple">
+            <li>Registra primero el almac&eacute;n de destino.</li>
+            <li>Asigna un administrador o encargado activo.</li>
+            <li>Usa un traslado para mover unidades entre ubicaciones sin cambiar el total del inventario.</li>
+          </ul>
+          <p class="nota">
+            <a href="movimientos.html#nuevo-movimiento">Ir a movimientos</a>
+          </p>
+        </aside>
+      </div>
+    </main>
+    <footer>Stockflow</footer>
+  </body>
 </html>

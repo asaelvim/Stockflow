@@ -1,101 +1,155 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Stockflow - Usuarios</title>
-	<link rel="stylesheet" href="estilos.css">
-</head>
-<body>
-  <header>
-    <h1>Stockflow</h1>
-    <p>Gestor de inventario</p>
-    <nav>
-      <a href="index.html">Inventario</a>
-      <a href="almacenes.html">Almacenes</a>
-      <a href="usuarios.html" class="activo">Usuarios</a>
-    </nav>
-  </header>
-  <main>
-    <h2>Usuarios</h2>
-    <p>Consulta las personas que tendrán acceso al sistema y sus roles.</p>
-
-    <section class="panel">
-      <h2>Usuarios registrados</h2>
-      <div class="tabla-contenedor">
-        <table>
-          <caption>Usuarios y roles de ejemplo</caption>
-          <thead>
-            <tr>
-              <th scope="col">Código</th>
-              <th scope="col">Nombre</th>
-              <th scope="col">Correo</th>
-              <th scope="col">Rol</th>
-              <th scope="col">Estado</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>US-001</td>
-              <td>Usuario administrador</td>
-              <td>admin@example.com</td>
-              <td>Administrador</td>
-              <td>Activo</td>
-            </tr>
-            <tr>
-              <td>US-002</td>
-              <td>Usuario de almacén</td>
-              <td>almacen@example.com</td>
-              <td>Encargado</td>
-              <td>Activo</td>
-            </tr>
-            <tr>
-              <td>US-003</td>
-              <td>Usuario de consulta</td>
-              <td>consulta@example.com</td>
-              <td>Consulta</td>
-              <td>Inactivo</td>
-            </tr>
-          </tbody>
-        </table>
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Usuarios &middot; Stockflow</title>
+    <link href="estilos.css" rel="stylesheet">
+  </head>
+  <body>
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+    <header class="cabecera">
+      <div class="cabecera-superior">
+        <div>
+          <a class="marca" href="index.html">
+            Stockflow
+            <span aria-hidden="true">.</span>
+          </a>
+          <p class="submarca">Gesti&oacute;n de inventario</p>
+        </div>
+        <div class="sesion">
+          <span>Vista de administrador</span>
+          <a href="acceso.php">Acceso</a>
+        </div>
       </div>
-    </section>
-
-    <section class="panel">
-      <h2>Registrar usuario</h2>
-      <form>
-        <div class="campos">
-          <div>
-            <label for="nombre">Nombre completo</label>
-            <input id="nombre" name="nombre" type="text" autocomplete="name" required>
+      <nav aria-label="Principal">
+        <a href="index.html">Inventario</a>
+        <a href="movimientos.html">Movimientos</a>
+        <a href="almacenes.html">Almacenes</a>
+        <a href="categorias.html">Categor&iacute;as</a>
+        <a aria-current="page" href="usuarios.html">Usuarios</a>
+      </nav>
+    </header>
+    <main id="contenido">
+      <div class="titulo-pagina">
+        <div>
+          <span class="ceja">Administraci&oacute;n</span>
+          <h1>Usuarios</h1>
+          <p>Administra el acceso y los roles de tu equipo.</p>
+        </div>
+        <a class="boton" href="#nuevo-usuario">+ Registrar usuario</a>
+      </div>
+      <section aria-label="Resumen de usuarios" class="resumen">
+        <div class="tarjeta">
+          <h2>Usuarios registrados</h2>
+          <p class="valor">0</p>
+        </div>
+        <div class="tarjeta">
+          <h2>Activos</h2>
+          <p class="valor">0</p>
+        </div>
+        <div class="tarjeta">
+          <h2>Inactivos</h2>
+          <p class="valor">0</p>
+        </div>
+      </section>
+      <section aria-labelledby="usuarios-titulo" class="panel">
+        <h2 id="usuarios-titulo">Usuarios registrados</h2>
+        <form aria-describedby="filtros-aviso" aria-label="Filtros de usuarios" class="filtros">
+          <div class="busqueda">
+            <label for="buscar">Buscar usuario</label>
+            <input id="buscar" name="buscar" placeholder="Nombre, c&oacute;digo o correo" type="search">
           </div>
           <div>
-            <label for="correo">Correo electrónico</label>
-            <input id="correo" name="correo" type="email" autocomplete="email" required>
-          </div>
-          <div>
-            <label for="rol">Rol</label>
-            <select id="rol" name="rol" required>
-              <option value="">Selecciona un rol</option>
+            <label for="filtro-rol">Rol</label>
+            <select id="filtro-rol" name="rol">
+              <option value="">Todos los roles</option>
               <option value="administrador">Administrador</option>
               <option value="encargado">Encargado</option>
               <option value="consulta">Consulta</option>
             </select>
           </div>
           <div>
-            <label for="estado">Estado</label>
-            <select id="estado" name="estado">
+            <label for="filtro-estado">Estado</label>
+            <select id="filtro-estado" name="estado">
+              <option value="">Todos</option>
               <option value="activo">Activo</option>
               <option value="inactivo">Inactivo</option>
             </select>
           </div>
+          <button disabled="" type="submit">Aplicar filtros</button>
+        </form>
+        <div aria-label="Usuarios" class="tabla-contenedor" role="region" tabindex="0">
+          <table>
+            <caption>Usuarios registrados</caption>
+            <thead>
+              <tr>
+                <th scope="col">C&oacute;digo</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Rol</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
         </div>
-        <p id="aviso-usuario">El registro de usuarios y la asignación de permisos estarán disponibles en una próxima etapa.</p>
-        <button class="deshabilitado" type="button" disabled>Guardar usuario</button>
-        <button class="secundario" type="reset">Limpiar campos</button>
-      </form>
-    </section>
-  </main>
-  <footer><p>Stockflow · Sistema de inventario</p></footer>
-</body>
+        <p class="nota"></p>
+      </section>
+      <div class="division">
+        <section aria-labelledby="alta-titulo" class="panel" id="nuevo-usuario">
+          <h2 id="alta-titulo">Registrar usuario</h2>
+          <p class="ayuda">Los campos marcados con * son obligatorios.</p>
+          <form aria-describedby="aviso-usuario">
+            <div class="campos">
+              <div>
+                <label for="nombre">Nombre completo *</label>
+                <input autocomplete="name" id="nombre" maxlength="120" name="nombre" required="">
+              </div>
+              <div>
+                <label for="correo">Correo electr&oacute;nico *</label>
+                <input autocomplete="email" id="correo" maxlength="254" name="correo" placeholder="nombre@example.com" required="" type="email">
+              </div>
+              <div>
+                <label for="rol">Rol *</label>
+                <select id="rol" name="rol" required="">
+                  <option value="">Selecciona un rol</option>
+                  <option value="administrador">Administrador</option>
+                  <option value="encargado">Encargado</option>
+                  <option value="consulta">Consulta</option>
+                </select>
+              </div>
+              <div>
+                <label for="estado">Estado *</label>
+                <select id="estado" name="estado" required="">
+                  <option value="activo">Activo</option>
+                  <option value="inactivo">Inactivo</option>
+                </select>
+              </div>
+              <div class="ancho-completo">
+                <label for="contrasena">Contrase&ntilde;a inicial *</label>
+                <input aria-describedby="contrasena-ayuda" autocomplete="new-password" id="contrasena" minlength="12" name="contrasena" required="" type="password">
+              </div>
+            </div>
+            <div class="acciones">
+              <button disabled="" type="submit">Guardar usuario</button>
+              <button class="secundario" type="reset">Limpiar campos</button>
+            </div>
+          </form>
+        </section>
+        <aside aria-labelledby="roles-titulo" class="panel">
+          <h2 id="roles-titulo">Permisos por rol</h2>
+          <h3>Administrador</h3>
+          <p class="ayuda">Gestiona productos, movimientos, almacenes, categor&iacute;as y usuarios.</p>
+          <h3>Encargado</h3>
+          <p class="ayuda">Consulta el inventario y registra movimientos en los almacenes a su cargo.</p>
+          <h3>Consulta</h3>
+          <p class="ayuda">Consulta existencias e historial, sin modificar informaci&oacute;n.</p>
+          <p class="nota">Esta es la referencia de interfaz para la siguiente etapa; los permisos deber&aacute;n validarse tambi&eacute;n en el servidor.</p>
+        </aside>
+      </div>
+    </main>
+    <footer>Stockflow</footer>
+  </body>
 </html>

@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Movimientos &middot; Stockflow</title>
+    <link href="estilos.css" rel="stylesheet">
+  </head>
+  <body>
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+    <header class="cabecera">
+      <div class="cabecera-superior">
+        <div>
+          <a class="marca" href="index.html">
+            Stockflow
+            <span aria-hidden="true">.</span>
+          </a>
+          <p class="submarca">Gesti&oacute;n de inventario</p>
+        </div>
+        <div class="sesion">
+          <span>Vista de administrador</span>
+          <a href="acceso.php">Acceso</a>
+        </div>
+      </div>
+      <nav aria-label="Principal">
+        <a href="index.html">Inventario</a>
+        <a aria-current="page" href="movimientos.html">Movimientos</a>
+        <a href="almacenes.html">Almacenes</a>
+        <a href="categorias.html">Categor&iacute;as</a>
+        <a href="usuarios.html">Usuarios</a>
+      </nav>
+    </header>
+    <main id="contenido">
+      <div class="titulo-pagina">
+        <div>
+          <span class="ceja">Trazabilidad</span>
+          <h1>Movimientos</h1>
+          <p>Registra entradas, salidas y traslados sin perder el historial.</p>
+        </div>
+        <a class="boton" href="#nuevo-movimiento">+ Registrar movimiento</a>
+      </div>
+      <section aria-label="Resumen del historial completo" class="resumen">
+        <div class="tarjeta">
+          <h2>Movimientos</h2>
+          <p class="valor">0</p>
+          <small>En todo el historial</small>
+        </div>
+        <div class="tarjeta">
+          <h2>Entradas</h2>
+          <p class="valor">0</p>
+          <small>48 piezas ingresadas</small>
+        </div>
+        <div class="tarjeta">
+          <h2>Salidas</h2>
+          <p class="valor">0</p>
+          <small>5 piezas retiradas</small>
+        </div>
+        <div class="tarjeta">
+          <h2>Traslados</h2>
+          <p class="valor">0</p>
+          <small>8 piezas reubicadas</small>
+        </div>
+      </section>
+      <section aria-labelledby="historial-titulo" class="panel">
+        <h2 id="historial-titulo">Historial de movimientos</h2>
+        <form aria-describedby="filtros-aviso" aria-label="Filtros de movimientos" class="filtros">
+          <div class="busqueda">
+            <label for="buscar">Buscar</label>
+            <input id="buscar" name="buscar" placeholder="Folio o producto" type="search">
+          </div>
+          <div>
+            <label for="filtro-tipo">Tipo</label>
+            <select id="filtro-tipo" name="tipo">
+              <option value="">Todos</option>
+              <option value="entrada">Entrada</option>
+              <option value="salida">Salida</option>
+              <option value="traslado">Traslado</option>
+            </select>
+          </div>
+          <div>
+            <label for="filtro-almacen">Almac&eacute;n</label>
+            <select id="filtro-almacen" name="almacen">
+              <option value="">Todos</option>
+            </select>
+          </div>
+          <div>
+            <label for="desde">Desde</label>
+            <input id="desde" name="desde" type="date">
+          </div>
+          <div>
+            <label for="hasta">Hasta</label>
+            <input id="hasta" name="hasta" type="date">
+          </div>
+          <button disabled="" type="submit">Aplicar filtros</button>
+        </form>
+        <div aria-label="Historial de movimientos" class="tabla-contenedor" role="region" tabindex="0">
+          <table>
+            <caption>Historial de movimientos</caption>
+            <thead>
+              <tr>
+                <th scope="col">Folio / fecha</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Producto</th>
+                <th scope="col">Origen</th>
+                <th scope="col">Destino</th>
+                <th class="numero" scope="col">Cantidad</th>
+                <th scope="col">Registrado por</th>
+                <th scope="col">Detalle</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+      <div class="division">
+        <section aria-labelledby="registro-titulo" class="panel" id="nuevo-movimiento">
+          <h2 id="registro-titulo">Registrar movimiento</h2>
+          <p>Abre el tipo de operaci&oacute;n que necesitas. Los campos marcados con * son obligatorios.</p>
+          <details open="">
+            <summary>Entrada &middot; aumentar existencias</summary>
+            <div class="contenido-detalle">
+              <form aria-describedby="movimiento-aviso" aria-label="Registrar entrada">
+                <input name="tipo" type="hidden" value="entrada">
+                <div class="campos">
+                  <div>
+                    <label for="entrada-producto">Producto *</label>
+                    <select id="entrada-producto" name="producto" required="">
+                      <option value="">Selecciona un producto</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="entrada-destino">Almac&eacute;n de destino *</label>
+                    <select id="entrada-destino" name="destino" required="">
+                      <option value="">Selecciona un almac&eacute;n</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="entrada-cantidad">Cantidad (piezas) *</label>
+                    <input id="entrada-cantidad" min="1" name="cantidad" required="" step="1" type="number">
+                  </div>
+                  <div>
+                    <label for="entrada-referencia">Referencia (opcional)</label>
+                    <input id="entrada-referencia" maxlength="80" name="referencia" placeholder="Factura o comprobante">
+                  </div>
+                  <div class="ancho-completo">
+                    <label for="entrada-motivo">Motivo *</label>
+                    <textarea id="entrada-motivo" maxlength="500" name="motivo" placeholder="Ej. Compra de material" required="" rows="2"></textarea>
+                  </div>
+                </div>
+                <div class="acciones">
+                  <button disabled="" type="submit">Revisar entrada</button>
+                  <button class="secundario" type="reset">Limpiar campos</button>
+                </div>
+              </form>
+            </div>
+          </details>
+          <details>
+            <summary>Salida &middot; disminuir existencias</summary>
+            <div class="contenido-detalle">
+              <form aria-describedby="movimiento-aviso salida-ayuda" aria-label="Registrar salida">
+                <input name="tipo" type="hidden" value="salida">
+                <div class="campos">
+                  <div>
+                    <label for="salida-producto">Producto *</label>
+                    <select id="salida-producto" name="producto" required="">
+                      <option value="">Selecciona un producto</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="salida-origen">Almac&eacute;n de origen *</label>
+                    <select id="salida-origen" name="origen" required="">
+                      <option value="">Selecciona un almac&eacute;n</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="salida-cantidad">Cantidad (piezas) *</label>
+                    <input id="salida-cantidad" min="1" name="cantidad" required="" step="1" type="number">
+                  </div>
+                  <div>
+                    <label for="salida-referencia">Referencia (opcional)</label>
+                    <input id="salida-referencia" maxlength="80" name="referencia" placeholder="Solicitud o comprobante">
+                  </div>
+                  <div class="ancho-completo">
+                    <label for="salida-motivo">Motivo *</label>
+                    <textarea id="salida-motivo" maxlength="500" name="motivo" placeholder="Ej. Entrega para consumo interno" required="" rows="2"></textarea>
+                  </div>
+                </div>
+                <p class="ayuda" id="salida-ayuda">El sistema deber&aacute; mostrar el stock disponible y rechazar cantidades superiores a las existencias del almac&eacute;n.</p>
+                <div class="acciones">
+                  <button disabled="" type="submit">Revisar salida</button>
+                  <button class="secundario" type="reset">Limpiar campos</button>
+                </div>
+              </form>
+            </div>
+          </details>
+          <details>
+            <summary>Traslado &middot; mover entre almacenes</summary>
+            <div class="contenido-detalle">
+              <form aria-describedby="movimiento-aviso traslado-ayuda" aria-label="Registrar traslado">
+                <input name="tipo" type="hidden" value="traslado">
+                <div class="campos">
+                  <div class="ancho-completo">
+                    <label for="traslado-producto">Producto *</label>
+                    <select id="traslado-producto" name="producto" required="">
+                      <option value="">Selecciona un producto</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="traslado-origen">Almac&eacute;n de origen *</label>
+                    <select id="traslado-origen" name="origen" required="">
+                      <option value="">Selecciona un almac&eacute;n</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="traslado-destino">Almac&eacute;n de destino *</label>
+                    <select id="traslado-destino" name="destino" required="">
+                      <option value="">Selecciona un almac&eacute;n</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="traslado-cantidad">Cantidad (piezas) *</label>
+                    <input id="traslado-cantidad" min="1" name="cantidad" required="" step="1" type="number">
+                  </div>
+                  <div>
+                    <label for="traslado-referencia">Referencia (opcional)</label>
+                    <input id="traslado-referencia" maxlength="80" name="referencia" placeholder="Orden de traslado">
+                  </div>
+                  <div class="ancho-completo">
+                    <label for="traslado-motivo">Motivo *</label>
+                    <textarea id="traslado-motivo" maxlength="500" name="motivo" placeholder="Ej. Reabastecimiento de sucursal" required="" rows="2"></textarea>
+                  </div>
+                </div>
+                <p class="ayuda" id="traslado-ayuda">
+                  Origen y destino deben ser distintos. La cantidad no podr&aacute; superar el stock de origen; ambas existencias deber&aacute;n actualizarse en una sola operaci&oacute;n.
+                </p>
+                <div class="acciones">
+                  <button disabled="" type="submit">Revisar traslado</button>
+                  <button class="secundario" type="reset">Limpiar campos</button>
+                </div>
+              </form>
+            </div>
+          </details>
+        </section>
+        <aside>
+          <section class="panel">
+            <h2>Elige la operaci&oacute;n correcta</h2>
+            <h3>Entrada</h3>
+            <p class="ayuda">Recibes unidades por compra, devoluci&oacute;n o carga inicial.</p>
+            <h3>Salida</h3>
+            <p class="ayuda">Retiras unidades por consumo, entrega o baja de material.</p>
+            <h3>Traslado</h3>
+            <p class="ayuda">Cambias unidades de ubicaci&oacute;n. El total del inventario permanece igual.</p>
+            <a href="index.html">Consultar existencias actuales</a>
+          </section>
+          <section class="panel">
+            <h2>Antes de confirmar</h2>
+            <p>Revisa producto, almac&eacute;n y cantidad. La siguiente etapa deber&aacute; validar existencias y permisos en el servidor.</p>
+            <p class="nota">Los errores de conexi&oacute;n o stock insuficiente deber&aacute;n mostrarse sin borrar lo capturado ni registrar movimientos parciales.</p>
+          </section>
+        </aside>
+      </div>
+    </main>
+    <footer>Stockflow</footer>
+  </body>
+</html>

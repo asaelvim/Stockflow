@@ -1,4 +1,5 @@
-Inventario - Ulises André Magallanes Geraldo y Rafael Rodriguez Perez
-Css - Demian Saúl Sánchez Sánchez
-Almacenes - Ander Miguel Meza Resendiz
-Usuarios - Ulises Asael Villa Medina
+Ulises André Magallanes Geraldo - index.html, producto.html y sus estilos en estilos.css
+Rafael Rodriguez Perez - index.html, movimientos.html y sus estilos en estilos.css
+Demian Saúl Sánchez Sánchez - producto.html, categorias.html y sus estilos en estilos.css
+Ander Miguel Meza Resendiz - almacenes.html, categorias.html y sus estilos en estilos.css
+Ulises Asael Villa Medina - usuarios.html, acceso.html y sus estilos en estilos.css
